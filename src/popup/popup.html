@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><meta charset="UTF-8" /><title>Salesforce OrgStudio</title><link rel="stylesheet" href="popup.css" /></head>
+<body>
+  <header class="pop-head"><span class="pop-mark" id="popMark"></span><div class="pop-title">Salesforce Org<span>Studio</span></div><button class="pop-icon" id="popTheme" title="Toggle theme"></button></header>
+  <div class="pop-detect" id="popDetect"></div>
+  <div class="pop-org" id="popOrg"><div class="pop-empty" id="popEmpty">No org connected yet.</div></div>
+  <div class="pop-actions">
+    <button class="pop-btn primary" id="quickConnect"><svg viewBox="0 0 16 16"><path d="M8.5 1.5L3 9h4l-1 5.5L13 6H8.5z"/></svg> Connect to your open org</button>
+    <button class="pop-btn" id="openIde">Open OrgStudio IDE</button>
+  </div>
+  <footer class="pop-foot" id="popFoot"></footer>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

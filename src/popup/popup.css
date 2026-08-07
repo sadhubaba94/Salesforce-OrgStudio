@@ -1,0 +1,31 @@
+:root { --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+[data-theme="light"] { --bg: #ffffff; --surface: #f5f6f8; --surface-2: #eef1f5; --border: #dde1e9; --text: #1a2030; --text-dim: #5a6478; --text-faint: #97a0b2; --accent: #2f6bff; --accent-ink: #fff; --success: #17916b; --danger: #d94040; }
+[data-theme="dark"] { --bg: #0b0d12; --surface: #141822; --surface-2: #1a1f2b; --border: #242c3a; --text: #e6e9f0; --text-dim: #9aa4b8; --text-faint: #616b82; --accent: #6ea8fe; --accent-ink: #0b0d12; --success: #46d19e; --danger: #ff6b6b; }
+* { box-sizing: border-box; }
+body { width: 320px; margin: 0; font-family: var(--font-sans); font-size: 13px; background: var(--bg); color: var(--text); padding: 14px; }
+svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.pop-head { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+.pop-mark { width: 24px; height: 24px; display: inline-block; }
+.pop-title { font-weight: 650; font-size: 14.5px; letter-spacing: -.02em; } .pop-title span { color: var(--accent); }
+.pop-icon { margin-left: auto; background: transparent; border: 0; color: var(--text-dim); cursor: pointer; padding: 5px; border-radius: 6px; }
+.pop-icon:hover { background: var(--surface-2); color: var(--text); }
+.pop-detect { font-size: 11.5px; color: var(--text-dim); background: color-mix(in srgb, var(--accent) 8%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent); border-radius: 8px; padding: 8px 10px; margin-bottom: 10px; display: none; }
+.pop-detect.show { display: block; } .pop-detect b { color: var(--text); }
+.pop-org { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px; margin-bottom: 12px; }
+.pop-empty { color: var(--text-faint); text-align: center; padding: 8px; }
+.pop-org-row { display: flex; align-items: center; gap: 10px; padding: 7px 6px; cursor: pointer; border-radius: 8px; }
+.pop-org-row:hover { background: var(--surface-2); }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex: none; } .dot.sandbox { background: var(--success); } .dot.prod { background: var(--danger); }
+.pop-u { font-weight: 600; font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pop-i { color: var(--text-faint); font-size: 11px; }
+.badge { margin-left: auto; font-size: 9.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 3px 7px; border-radius: 999px; }
+.badge.sandbox { background: color-mix(in srgb, var(--success) 16%, transparent); color: var(--success); }
+.badge.prod { background: color-mix(in srgb, var(--danger) 16%, transparent); color: var(--danger); }
+.pop-actions { display: grid; gap: 8px; }
+.pop-btn { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
+.pop-btn:hover { background: var(--surface-2); }
+.pop-btn.primary { background: var(--accent); color: var(--accent-ink); border-color: transparent; font-weight: 600; }
+.pop-btn:disabled { opacity: .55; cursor: default; }
+.pop-foot { margin-top: 12px; color: var(--text-faint); font-size: 10.5px; text-align: center; }
+.spinner { width: 13px; height: 13px; border: 2px solid rgba(255,255,255,.4); border-top-color: currentColor; border-radius: 50%; animation: spin .7s linear infinite; display: inline-block; }
+@keyframes spin { to { transform: rotate(360deg); } }

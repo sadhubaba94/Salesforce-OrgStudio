@@ -1,0 +1,29 @@
+/* editor.css — ALIGNMENT FIX
+   --ce-line-height is now an INTEGER pixel value set by editor.js (_syncLineMetrics).
+   The gutter line numbers and the code/textarea lines share this exact px line box,
+   so per-element sub-pixel rounding can never make them drift apart. */
+.ce-root { --ce-line-height: 21px; --ce-pad-y: 10px; display: grid; grid-template-columns: auto 1fr; height: 100%; min-height: 0; background: var(--editor-bg); font-family: var(--font-mono); font-size: var(--editor-font-size, 13px); line-height: var(--ce-line-height); overflow: hidden; }
+.ce-gutter { overflow: hidden; text-align: right; padding: var(--ce-pad-y) 10px var(--ce-pad-y) 14px; color: var(--gutter-fg); user-select: none; background: var(--gutter-bg); border-right: 1px solid var(--border); min-width: 48px; font-family: var(--font-mono); font-size: inherit; line-height: var(--ce-line-height); font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; box-sizing: border-box; }
+.ce-lnum { height: var(--ce-line-height); line-height: var(--ce-line-height); padding: 0 4px; opacity: .55; transition: opacity .12s, color .12s; box-sizing: border-box; }
+.ce-lnum-active { opacity: 1; color: var(--text); }
+.ce-lnum-err { color: var(--danger); opacity: 1; font-weight: 600; }
+.ce-scroll { position: relative; min-width: 0; }
+.ce-highlight, .ce-input { margin: 0; padding: var(--ce-pad-y) 16px; border: 0; font-family: var(--font-mono); font-size: inherit; line-height: var(--ce-line-height); tab-size: 4; -moz-tab-size: 4; white-space: pre; overflow: auto; position: absolute; inset: 0; box-sizing: border-box; }
+.ce-wrap .ce-highlight, .ce-wrap .ce-input { white-space: pre-wrap; word-break: break-word; }
+.ce-no-gutter { grid-template-columns: 1fr; }
+.ce-no-gutter .ce-gutter { display: none; }
+.ce-highlight { pointer-events: none; color: var(--text); z-index: 1; }
+.ce-highlight code { display: block; font: inherit; line-height: inherit; }
+.ce-input { z-index: 2; background: transparent; color: transparent; caret-color: var(--accent); resize: none; outline: none; }
+.ce-input::selection { background: var(--selection); }
+.ce-line { display: inline; }
+.ce-line-err { background: color-mix(in srgb, var(--danger) 12%, transparent); box-shadow: inset 2px 0 0 var(--danger); }
+.tok-keyword { color: var(--tok-keyword); }
+.tok-type { color: var(--tok-type); }
+.tok-string { color: var(--tok-string); }
+.tok-number { color: var(--tok-number); }
+.tok-comment { color: var(--tok-comment); font-style: italic; }
+.tok-annotation { color: var(--tok-annotation); }
+.tok-property { color: var(--tok-property); }
+.tok-punct { color: var(--tok-punct); }
+.tok-ident, .tok-plain { color: var(--text); }

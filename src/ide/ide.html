@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salesforce OrgStudio</title>
+  <link rel="stylesheet" href="../editor/editor.css" />
+  <link rel="stylesheet" href="ide.css" />
+  <link rel="stylesheet" href="../inspector/inspector.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="brand-wrap" id="brandWrap">
+        <div class="brand" id="brandBtn"><span class="brand-mark" id="brandMark"></span><span class="brand-name">Salesforce Org<span>Studio</span></span></div>
+        <div class="brand-pop" id="brandPop">
+          <div class="bp-title">Subhrajyoti Sadhu</div>
+          <a class="bp-link" id="bpLinkedIn" target="_blank" rel="noopener noreferrer"><span class="bp-ico" id="bpiLi"></span><span>LinkedIn</span></a>
+          <a class="bp-link" id="bpTrail" target="_blank" rel="noopener noreferrer"><span class="bp-ico" id="bpiTb"></span><span>Trailblazer</span></a>
+          <a class="bp-link" id="bpMail"><span class="bp-ico" id="bpiMail"></span><span>Email</span></a>
+        </div>
+      </div>
+      <div class="org-switcher" id="orgSwitcher">
+        <button class="org-current" id="orgCurrentBtn" aria-haspopup="listbox">
+          <span class="org-dot" id="orgDot"></span>
+          <span class="org-meta"><span class="org-username" id="orgUsername">Not connected</span><span class="org-instance" id="orgInstance">Connect an org to begin</span></span>
+          <svg class="chevron" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="org-menu" id="orgMenu" role="listbox" hidden></div>
+      </div>
+      <span class="env-badge" id="envBadge" hidden></span>
+    </div>
+    <div class="topbar-right">
+      <div class="api-limit" id="apiLimit" title="Daily API usage"></div>
+      <button class="btn ghost icon-btn gh-btn" id="githubBtn" title="GitHub — one-click version control"><span class="gh-dot"></span></button>
+      <button class="btn ghost icon-btn" id="themeBtn" title="Toggle theme"></button>
+      <button class="btn ghost icon-btn" id="settingsBtn" title="Settings"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.5"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.5 1.5M11.5 11.5L13 13M13 3l-1.5 1.5M4.5 11.5L3 13"/></svg></button>
+      <button class="btn primary" id="deployBtn" disabled><svg viewBox="0 0 16 16"><path d="M8 2v8M4 6l4-4 4 4M3 13h10"/></svg>Save / Deploy</button>
+    </div>
+  </header>
+  <main class="workbench">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <div class="search-box"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M11 11l3 3"/></svg><input type="text" id="treeSearch" placeholder="Search components…" spellcheck="false" /></div>
+        <button class="btn ghost icon-btn" id="refreshTreeBtn" title="Refresh metadata"><svg viewBox="0 0 16 16"><path d="M13 8a5 5 0 11-1.5-3.5M13 2v3h-3"/></svg></button>
+      </div>
+      <div class="tree" id="tree"><div class="tree-empty">Connect an org to browse metadata.</div></div>
+      <div class="sidebar-foot">
+        <div class="foot-menus">
+          <div class="newmenu" id="newMenuWrap">
+            <button class="newmenu-btn" id="newMenuBtn" title="Create or upload components"><span class="nm-plus" id="nmPlus"></span><span>New / Upload</span><span class="nm-caret" id="nmCaret"></span></button>
+            <div class="newmenu-pop" id="newMenu" hidden></div>
+          </div>
+          <div class="newmenu" id="devMenuWrap">
+            <button class="newmenu-btn" id="devMenuBtn" title="Developer tools"><span class="nm-plus" id="dtIco"></span><span>Developer Tools</span><span class="nm-caret" id="dtCaret"></span></button>
+            <div class="newmenu-pop" id="devMenu" hidden></div>
+          </div>
+        </div>
+        <span class="engine" id="engineLabel"></span>
+      </div>
+    </aside>
+    <div class="col-resize" data-resize="sidebar"></div>
+    <section class="editor-area">
+      <div class="tabstrip" id="tabstrip"></div>
+      <div class="editor-host" id="editorHost">
+        <div class="welcome" id="welcome">
+          <div class="welcome-mark" id="welcomeMark"></div>
+          <h1>Salesforce OrgStudio</h1>
+          <p class="welcome-sub">A lightweight in-browser IDE for Salesforce.</p>
+          <div class="welcome-actions">
+            <button class="btn primary lg" id="welcomeQuick"><svg viewBox="0 0 16 16"><path d="M8.5 1.5L3 9h4l-1 5.5L13 6H8.5z"/></svg>Connect to your open org</button>
+            <button class="btn ghost" id="welcomeOAuth">Use OAuth instead</button>
+          </div>
+          <p class="welcome-note" id="welcomeNote">One click connects to the Salesforce org you're already logged into (reuses that tab's session).</p>
+          <ul class="welcome-hints">
+            <li><kbd>Ctrl/Cmd</kbd> + <kbd>S</kbd> — Save / deploy the active file</li>
+            <li><kbd>Ctrl/Cmd</kbd> + <kbd>F</kbd> — Find in the active file</li>
+            <li><kbd>Ctrl/Cmd</kbd> + <kbd>Enter</kbd> — Run anonymous Apex</li>
+          </ul>
+        </div>
+      </div>
+      <div class="find-bar" id="findBar" hidden>
+        <input type="text" id="findInput" placeholder="Find" spellcheck="false" />
+        <input type="text" id="replaceInput" placeholder="Replace" spellcheck="false" />
+        <button class="btn ghost sm" id="findNext">Next</button>
+        <button class="btn ghost sm" id="replaceOne">Replace</button>
+        <button class="btn ghost sm" id="replaceAllBtn">All</button>
+        <button class="btn ghost sm icon-btn" id="findClose">✕</button>
+      </div>
+      <div class="editor-statusbar" id="statusBar">
+        <span class="sb-left" id="sbLeft"></span>
+        <span class="sb-right"><span id="statusPos">Ln 1, Col 1</span><span class="sb-sep">·</span><span id="statusApi"></span></span>
+      </div>
+    </section>
+    <div class="row-resize" data-resize="panel"></div>
+    <section class="panel" id="panel">
+      <nav class="panel-tabs" id="panelTabs">
+        <button class="panel-tab active" data-panel="deploy">Deploy</button>
+        <button class="panel-tab" data-panel="anon">Anonymous Apex</button>
+        <button class="panel-tab" data-panel="tests">Tests</button>
+        <button class="panel-tab" data-panel="logs">Logs</button>
+        <button class="panel-tab" data-panel="soql">SOQL</button>
+        <button class="panel-tab" data-panel="problems">Problems<span class="badge" id="problemsBadge" hidden>0</span></button>
+        <button class="panel-toggle" id="panelToggle" title="Collapse panel"></button>
+      </nav>
+      <div class="panel-body" id="panelBody"></div>
+    </section>
+  </main>
+  <div class="modal-backdrop" id="modalBackdrop" hidden><div class="modal" id="modal" role="dialog" aria-modal="true"></div></div>
+  <div class="toasts" id="toasts"></div>
+  <script type="module" src="ide.js"></script>
+</body>
+</html>
